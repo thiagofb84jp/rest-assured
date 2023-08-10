@@ -257,5 +257,6 @@ public class VerbosTest {
         Assert.assertThat(usuarioInserido.getName(), is(user.getName()));
         Assert.assertThat(usuarioInserido.getAge(), is(user.getAge()));
         Assert.assertThat(usuarioInserido.getSalary(), nullValue());
+        System.out.println("I love to learn something");
     }
 }
