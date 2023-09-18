@@ -2,6 +2,7 @@ package br.pb.thiagofb84jp;
 
 import io.restassured.RestAssured;
 import io.restassured.matcher.RestAssuredMatchers;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import org.junit.Test;
 import org.xml.sax.SAXParseException;
 
@@ -34,6 +35,20 @@ public class SchemaTest {
              .statusCode(200)
         .and()
              .body(RestAssuredMatchers.matchesXsdInClasspath("users.xsd"))
+        ;
+    }
+
+    @Test
+    public void deveValidarSchemaJson() {
+        given()
+             .log().all()
+        .when()
+             .get("https://restapi.wcaquino.me/users")
+        .then()
+             .log().all()
+             .statusCode(200)
+        .and()
+             .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("users.json"))
         ;
     }
 }
