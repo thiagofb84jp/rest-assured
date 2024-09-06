@@ -1,7 +1,9 @@
 package br.pb.thiagofb84jp.core;
 
 public class APILinks {
-    public static final String PRODUTOS = "/products/";
-    public static final String CLIENTES = "/clients/";
+    public static final String CADASTRAR_PRODUTO = "/products/add";
+    public static final String CONSULTAR_PRODUTO = "/products/";
+    public static final String USUARIOS = "/users/";
+    public static final String CRIAR_TOKEN_AUTENTICACAO = "/auth/login";
     public static final String STATUS_API = "/test/";
 }
