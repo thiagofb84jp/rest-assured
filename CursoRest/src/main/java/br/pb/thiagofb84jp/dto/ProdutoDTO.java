@@ -1,7 +1,6 @@
 package br.pb.thiagofb84jp.dto;
 
 public class ProdutoDTO {
-
     private String title;
     private String description;
     private int price;

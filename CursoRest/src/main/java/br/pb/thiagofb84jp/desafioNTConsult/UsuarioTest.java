@@ -11,7 +11,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class UsuarioTest extends BaseTest {
-
     @Test
     public void criarTokenAutenticacao() {
         UsuarioDTO usuario = getUsuarioValido();

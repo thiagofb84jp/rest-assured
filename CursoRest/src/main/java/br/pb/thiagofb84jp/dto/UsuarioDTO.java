@@ -1,7 +1,6 @@
 package br.pb.thiagofb84jp.dto;
 
 public class UsuarioDTO {
-
     private String username;
     private String password;
 

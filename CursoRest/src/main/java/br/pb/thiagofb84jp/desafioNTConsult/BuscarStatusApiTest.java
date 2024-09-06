@@ -8,7 +8,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class BuscarStatusApiTest extends BaseTest {
-
     @Test
     public void verificarStatusApi() {
         given()
