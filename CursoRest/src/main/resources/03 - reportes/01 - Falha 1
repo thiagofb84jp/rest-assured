@@ -1,0 +1,30 @@
+# Reporte de Falha/Bug
+
+## Descrição
+Quando o token fornecido é copiado e colado, a resposta da API é "invalid signature", ao invés de retornar o erro esperado 401. Atualmente, está gerando um erro 500.
+
+## Token de Exemplo
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJhbGV4YW5kZXJqIiwiZW1haWwiOiJhbGV4YW5kZXIuam9uZXNAeC5kdW1teWpzb24uY29tIiwiZmlyc3ROYW1lIjoiQWxleGFuZGVyIiwibGFzdE5hbWUiOiJKb25lcyIsImdlbmRlciI6Im1hbGUiLCJpbWFnZSI6Imh0dHBzOi8vZHVtbXlqc29uLmNvbS9pY29uL2FsZXhhbmRlcmovMTI4IiwiaWF0IjoxNzI1ODc3OTY5LCJleHAiOjE3MjU4ODE1Njl9.-GaTXHFX-muyO-ZLxHeh8zrlIjqDQUgGLzSRqKF8ms1
+
+
+## Comportamento Esperado
+O sistema deve retornar um erro 401 quando o token é inválido.
+
+## Comportamento Atual
+O sistema retorna um erro 500.
+
+## Passos para Reproduzir
+1. Cole o token fornecido no campo apropriado para autenticação.
+2. Envie a requisição para a API.
+3. Observe a resposta.
+
+## Captura de Tela
+![Screenshot](caminho/para/screenshot.png)
+
+## Ambiente
+- API: [Nome da API ou endpoint]
+- Data e Hora do Teste: [Data e Hora]
+- Navegador/Cliente: [Nome do Navegador ou Cliente utilizado]
+
+## Observações
+- Adicione qualquer outra informação relevante aqui.

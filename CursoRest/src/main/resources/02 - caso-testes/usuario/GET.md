@@ -1,16 +1,16 @@
-# Casos de Teste para a API de Usuários
+# Casos de Teste para a API de Usuários - Método GET
 
-## Caso de Teste 1: Verificar o Status Code
-**Objetivo:** Confirmar que a API retorna um código de status HTTP 200 para uma requisição bem-sucedida.
-
+---
+## 1: Verificar o status code
+- **Objetivo:** Confirmar que a API retorna um código de status HTTP 200 para uma requisição bem-sucedida.
 - **Requisição:** `GET /users`
-- **Esperado:** Código de status HTTP 200.
+- **Saída esperada (response):** Código de status HTTP 200.
+---
 
-## Caso de Teste 2: Verificar a Estrutura do Response
-**Objetivo:** Validar que o corpo da resposta está estruturado corretamente.
-
+## 2: Verificar a Estrutura do Response
+- **Objetivo:** Validar que o corpo da resposta está estruturado corretamente.
 - **Requisição:** `GET /users`
-- **Esperado:**
+- **Saída esperada (response):**
     - O corpo da resposta deve ser um objeto JSON.
     - O objeto JSON deve conter uma chave `"users"`, que é uma lista.
     - Cada item da lista `"users"` deve ser um objeto com as seguintes chaves:
@@ -42,25 +42,26 @@
         - `"ssn"`
         - `"userAgent"`
 
-## Caso de Teste 3: Verificar o Conteúdo do Response
-**Objetivo:** Garantir que o conteúdo dos dados do usuário é consistente com o esperado.
+---
 
+## 3: Verificar o Conteúdo do Response
+- **Objetivo:** Garantir que o conteúdo dos dados do usuário é consistente com o Saída esperada (response).
 - **Requisição:** `GET /users`
-- **Esperado:**
+- **Saída esperada (response):**
     - A resposta deve conter pelo menos dois usuários.
     - Cada usuário deve ter valores válidos para todas as chaves especificadas (por exemplo, `"id"` deve ser um número, `"email"` deve seguir o formato de um endereço de e-mail, etc.).
 
-## Caso de Teste 4: Verificar a Presença de Campos Obrigatórios
-**Objetivo:** Verificar se todos os campos obrigatórios estão presentes na resposta.
-
+---
+## 4: Verificar a Presença de Campos Obrigatórios
+- **Objetivo:** Verificar se todos os campos obrigatórios estão presentes na resposta.
 - **Requisição:** `GET /users`
-- **Esperado:** Cada usuário na lista deve ter todos os campos obrigatórios presentes e não nulos.
+- **Saída esperada (response):** Cada usuário na lista deve ter todos os campos obrigatórios presentes e não nulos.
 
-## Caso de Teste 5: Verificar o Tipo de Dados dos Campos
-**Objetivo:** Garantir que os tipos de dados dos campos estão corretos.
-
+---
+## 5: Verificar o Tipo de Dados dos Campos
+- **Objetivo:** Garantir que os tipos de dados dos campos estão corretos.
 - **Requisição:** `GET /users`
-- **Esperado:**
+- **Saída esperada (response):**
     - `"id"`: número
     - `"firstName"`: string
     - `"lastName"`: string
@@ -89,8 +90,10 @@
     - `"ssn"`: string
     - `"userAgent"`: string
 
-## Caso de Teste 6: Verificar a Resposta para Requisições Inválidas
-**Objetivo:** Garantir que a API lida corretamente com requisições inválidas ou malformadas.
-
+---
+## 6: Verificar a Resposta para Requisições Inválidas
+- **Objetivo:** Garantir que a API lida corretamente com requisições inválidas ou malformadas.
 - **Requisição:** (faça uma requisição inválida, como um método HTTP incorreto ou URL errada)
-- **Esperado:** A API deve retornar um código de status de erro apropriado (por exemplo, 404 ou 400).
+- **Saída esperada (response):** A API deve retornar um código de status de erro apropriado (por exemplo, 404 ou 400).
+
+---

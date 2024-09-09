@@ -1,13 +1,9 @@
-
-# Casos de Testes - API de Autenticação
-
-## 1. Teste de autenticação bem-sucedida
+# Casos de Testes - API de Usuários - Método POST
+---
+## 1: Verificar geração de token com credenciais válidas 
 - **Objetivo:** Verificar se o token é gerado corretamente quando as credenciais são válidas.
 - **Pré-condição:** O username e password devem ser válidos.
-- **Request:**
-  ```arduino
-  curl --location 'https://dummyjson.com/auth/login'
-  ```
+- **Requisição:** `POST auth/users`
 - **Entrada (request):**
   ```json
   {
@@ -31,13 +27,10 @@
     "image": "https://dummyjson.com/icon/alexanderj/128"
   }
   ```
-
-## 2. Teste de autenticação com credenciais inválidas
+---
+## 2: Verificar geração de token com credenciais inválidas
 - **Objetivo:** Verificar se a API retorna erro quando o username ou password estão incorretos.
-- **Request:**
-  ```arduino
-  curl --location 'https://dummyjson.com/auth/login'
-  ```
+- **Requisição:** `POST auth/users`
 - **Entrada (request):**
   ```json
   {
@@ -53,13 +46,10 @@
     "message": "Invalid credentials"
   }
   ```
-
-## 3. Teste com dados ausentes no request
+---
+## 3: Verificar a geração do token sem o envio do campo "password"
 - **Objetivo:** Verificar a resposta da API quando campos obrigatórios estão ausentes.
-- **Request:**
-  ```arduino
-  curl --location 'https://dummyjson.com/auth/login'
-  ```
+- **Requisição:** `POST auth/users`
 - **Entrada (request):**
   ```json
   {
@@ -74,13 +64,10 @@
     "message": "Password is required"
   }
   ```
-
-## 4. Teste de expiração do token
+---
+## 4: Verificar a expiração do token após certo tempo de configuração
 - **Objetivo:** Verificar se o token expira após o tempo configurado.
-- **Request:**
-  ```arduino
-  curl --location 'https://dummyjson.com/auth/login'
-  ```
+- **Requisição:** `POST auth/users`
 - **Entrada:** Token gerado e aguardado o tempo de expiração.
 - **Saída esperada (response):**
     - Código HTTP: 401 (Unauthorized)
@@ -90,23 +77,10 @@
     "message": "Token expired"
   }
   ```
-
-## 5. Teste de integridade do token
-- **Objetivo:** Verificar se o token gerado está no formato JWT (JSON Web Token).
-- **Request:**
-  ```arduino
-  curl --location 'https://dummyjson.com/auth/login'
-  ```
-- **Entrada:** Request de autenticação válido.
-- **Saída esperada (response):**
-    - O campo `token` deve ser um JWT válido, composto por três partes separadas por pontos (`header.payload.signature`).
-
-## 6. Teste de autenticação com username inexistente
+---
+## 5. Verificar se o sistema permite gerar o token com usuário inexistente
 - **Objetivo:** Verificar o comportamento da API ao tentar autenticar com um username que não existe no sistema.
-- **Request:**
-  ```arduino
-  curl --location 'https://dummyjson.com/auth/login'
-  ```
+- **Requisição:** `POST auth/users`
 - **Entrada (request):**
   ```json
   {
@@ -115,21 +89,19 @@
   }
   ```
 - **Saída esperada (response):**
-    - Código HTTP: 404 (Not Found)
+    - Código HTTP: 400 (Bad Request)
     - Corpo:
   ```json
   {
     "message": "User not found"
   }
   ```
-
-## 7. Teste de refresh token
+---
+## 6. Verificar se o "refreshToken" permite gerar um novo token
 - **Objetivo:** Verificar se o `refreshToken` pode ser utilizado para gerar um novo token.
-- **Request:**
-  ```arduino
-  curl --location 'https://dummyjson.com/auth/login'
-  ```
+- **Requisição:** `POST auth/users`
 - **Entrada:** Enviar o `refreshToken` recebido no login.
 - **Saída esperada (response):**
     - Código HTTP: 200 (OK)
     - Novo token gerado corretamente.
+---
