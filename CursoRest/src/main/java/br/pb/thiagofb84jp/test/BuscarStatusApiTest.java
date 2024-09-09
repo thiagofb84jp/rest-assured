@@ -1,4 +1,4 @@
-package br.pb.thiagofb84jp.desafioNTConsult;
+package br.pb.thiagofb84jp.test;
 
 import br.pb.thiagofb84jp.core.APILinks;
 import br.pb.thiagofb84jp.core.BaseTest;

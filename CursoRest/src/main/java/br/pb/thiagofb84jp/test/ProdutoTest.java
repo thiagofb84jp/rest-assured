@@ -1,16 +1,13 @@
-package br.pb.thiagofb84jp.desafioNTConsult;
+package br.pb.thiagofb84jp.test;
 
 import br.pb.thiagofb84jp.core.APILinks;
 import br.pb.thiagofb84jp.core.BaseTest;
 import br.pb.thiagofb84jp.dto.ProdutoDTO;
-import com.github.javafaker.Faker;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class ProdutoTest extends BaseTest {
     @Test
@@ -23,7 +20,17 @@ public class ProdutoTest extends BaseTest {
              .post(APILinks.CADASTRAR_PRODUTO)
         .then()
              .statusCode(201)
-        // TODO colocar a validação do corpo do JSON
+        .and()
+             .body("id", is(notNullValue()))
+             .body("title", is(produto.getTitle()))
+             .body("price", is(produto.getPrice()))
+             .body("discountPercentage", is(produto.getDiscountPercentage()))
+             .body("stock", is(produto.getStock()))
+             .body("rating", is(produto.getRating()))
+             .body("thumbnail", is(produto.getThumbnail()))
+             .body("description", is(produto.getDescription()))
+             .body("brand", is(produto.getBrand()))
+             .body("category", is(produto.getCategory()))
         ;
     }
 
@@ -34,7 +41,8 @@ public class ProdutoTest extends BaseTest {
              .get(APILinks.CONSULTAR_PRODUTO)
         .then()
              .statusCode(200)
-        // TODO colocar a validação do corpo do JSON
+        .and()
+             .body("products[0].id", is(notNullValue()))
         ;
     }
 
@@ -51,13 +59,18 @@ public class ProdutoTest extends BaseTest {
         .and()
              .body("id", is(1))
              .body("title", is("Essence Mascara Lash Princess"))
-        // TODO colocar a validação do corpo do JSON
+             .body("description", is("The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula."))
+             .body("category", is("beauty"))
+             .body("price", is(9.99F))
+             .body("discountPercentage", is(7.17F))
+             .body("rating", is(4.94F))
+             .body("stock", is(5))
         ;
     }
 
     @Test
     public void buscarProdutoInexistente() {
-        int PRODUCT_ID = 199;
+        int PRODUCT_ID = 999;
 
         given()
              .pathParam("id", PRODUCT_ID)
@@ -67,7 +80,6 @@ public class ProdutoTest extends BaseTest {
              .statusCode(404)
         .and()
              .body("message", is("Product with id '"+ PRODUCT_ID +"' not found"))
-        // TODO colocar a validação do corpo do JSON
         ;
     }
 
@@ -78,10 +90,32 @@ public class ProdutoTest extends BaseTest {
         given()
              .header("Authorization", "Bearer " + usuario.getToken())
         .when()
-             .get(APILinks.CONSULTAR_PRODUTO)
+             .get(APILinks.CONSULTAR_PRODUTO_AUTH)
         .then()
              .statusCode(200)
-        // TODO colocar a validação do corpo do JSON
+        .and()
+             .body("products[0].id", is(1))
+             .body("products[0].title", is("Essence Mascara Lash Princess"))
+             .body("products[0].description", is("The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula."))
+             .body("products[0].category", is("beauty"))
+             .body("products[0].price", is(9.99F))
+             .body("products[0].discountPercentage", is(7.17F))
+             .body("products[0].rating", is(4.94F))
+             .body("products[0].stock", is(5))
+        ;
+    }
+
+    @Test
+    public void buscarProdutosSemInformarOToken() {
+        given()
+             .header("Authorization", "Bearer ")
+        .when()
+             .get(APILinks.CONSULTAR_PRODUTO_AUTH)
+        .then()
+             .statusCode(401)
+        .and()
+             .body("name", is("JsonWebTokenError"))
+             .body("message", is("Invalid/Expired Token!"))
         ;
     }
 

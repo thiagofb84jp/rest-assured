@@ -1,11 +1,8 @@
-package br.pb.thiagofb84jp.desafioNTConsult;
+package br.pb.thiagofb84jp.test;
 
 import br.pb.thiagofb84jp.core.APILinks;
 import br.pb.thiagofb84jp.core.BaseTest;
-import br.pb.thiagofb84jp.dto.ProdutoDTO;
 import br.pb.thiagofb84jp.dto.UsuarioDTO;
-import org.apache.groovy.lang.annotation.Incubating;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -164,7 +161,6 @@ public class UsuarioTest extends BaseTest {
                        .when()
                             .post(APILinks.CRIAR_TOKEN_AUTENTICACAO)
                        .then()
-                            .log().all()
                             .statusCode(200)
                             .extract().path("token")
                        ;
