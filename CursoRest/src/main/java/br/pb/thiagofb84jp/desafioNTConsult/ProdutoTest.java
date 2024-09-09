@@ -40,8 +40,10 @@ public class ProdutoTest extends BaseTest {
 
     @Test
     public void buscarProdutoPorID() {
+        int PRODUCT_ID = 1;
+
         given()
-             .pathParam("id", 1)
+             .pathParam("id", PRODUCT_ID)
         .when()
              .get(APILinks.CONSULTAR_PRODUTO + "{id}")
         .then()
@@ -70,9 +72,17 @@ public class ProdutoTest extends BaseTest {
     }
 
     @Test
-    @Ignore
     public void buscarProdutosComAutenticacao() {
+        UsuarioTest usuario = new UsuarioTest();
 
+        given()
+             .header("Authorization", "Bearer " + usuario.getToken())
+        .when()
+             .get(APILinks.CONSULTAR_PRODUTO)
+        .then()
+             .statusCode(200)
+        // TODO colocar a validação do corpo do JSON
+        ;
     }
 
     private ProdutoDTO getProdutoValido() {
