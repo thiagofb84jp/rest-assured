@@ -137,7 +137,7 @@
 - Cada produto deve ter os campos esperados com os tipos corretos.
 
 ---
-## Cenário 3: Verificar produtos específicos consultando pelo ID
+## Cenário 3: Verificar produtos específicos consultando pelo ID.
 
 **Objetivo:** Verificar se os dados de produtos específicos correspondem às informações fornecidas.
 
@@ -224,7 +224,7 @@
 - A resposta deve conter todos os produtos com os detalhes correspondentes aos dados fornecidos.
 
 ---
-## Cenário 4: Verificar o retorno informando um ID inexistente
+## Cenário 4: Verificar o retorno informando um ID inexistente.
 
 **Objetivo:** Verificar se ao informar um ID inexistente a API retorna a mensagem de produto com ID não encontrado.
 
@@ -243,7 +243,7 @@
 - A resposta deve conter apenas a mensagem informada (produto com ID não encontrado).
 
 ---
-## Cenário 5: Verificar o retorno informando um token inválido
+## Cenário 5: Verificar o retorno informando um token inválido.
 
 **Objetivo:** Verificar se, após a geração de um token, ao alterar o valor do token, a API não permite a busca pelos produtos.
 

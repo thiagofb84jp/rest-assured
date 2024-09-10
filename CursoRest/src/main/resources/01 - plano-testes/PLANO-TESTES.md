@@ -1,20 +1,17 @@
 # Plano de Testes da API - Gerenciamento de Produtos Eletrônicos
-
 ## Objetivo
 
-O objetivo deste plano de testes é validar o funcionamento das operações da API para gerenciamento de produtos eletrônicos, incluindo autenticação, criação, recuperação e listagem de produtos.
+O objetivo deste plano de testes é validar o funcionamento das operações da API para gerenciamento de produtos 
+eletrônicos, incluindo autenticação, criação, recuperação e listagem de produtos.
 
 ## URLs e Operações
-
 ### 1. Buscar Usuários para Autenticação
-
-- **URL:** `https://dummyjson.com/users`
+- **URL:** `{BASE_PATH}/users`
 - **Método:** GET
 - **Descrição:** Recupera a lista de usuários disponíveis para autenticação.
 
 ### 2. Criação de Token para Autenticação
-
-- **URL:** `https://dummyjson.com/auth/login`
+- **URL:** `{BASE_PATH}/auth/login`
 - **Método:** POST
 - **Cabeçalhos:**
     - `Content-Type: application/json`
@@ -28,7 +25,7 @@ O objetivo deste plano de testes é validar o funcionamento das operações da A
 - Descrição: Gera um token de autenticação para permitir o acesso às operações protegidas.
 
 ### 3. Buscar Produtos com Autenticação
-- URL: https://dummyjson.com/auth/products
+- URL: `{BASE_PATH}/auth/products`
 - Método: GET
 - Cabeçalhos:
   - Content-Type: application/json
@@ -36,7 +33,7 @@ O objetivo deste plano de testes é validar o funcionamento das operações da A
   - Descrição: Recupera a lista de produtos disponíveis com autenticação.
 
 ### 4. Criação de Produtos
-- URL: https://dummyjson.com/products/add
+- URL: `{BASE_PATH}/products/add`
 - Método: POST
 - Cabeçalhos:
    `Content-Type: application/json`
@@ -57,31 +54,51 @@ O objetivo deste plano de testes é validar o funcionamento das operações da A
 - **Descrição**: Adiciona um novo produto à lista de produtos.
 
 ### 5. Buscar Todos os Produtos
-- URL: https://dummyjson.com/products
+- URL: `{BASE_PATH}/products`
 - Método: GET
 - Descrição: Recupera a lista completa de produtos disponíveis.
 
 ### 6. Buscar Produto por ID
-- URL: https://dummyjson.com/products/1
+- URL: `{BASE_PATH}/products/{id}`
 - Método: GET
 - Descrição: Recupera os detalhes de um produto específico pelo ID.
 
 ## Cenários de Teste
-1. Teste de Autenticação
-   - Verificar se é possível gerar um token com credenciais válidas.
-   - Verificar se a resposta contém um token de autenticação.
-2. Teste de Recuperação de Produtos com Autenticação
-   - Verificar se a lista de produtos pode ser recuperada com um token válido.
-   - Verificar se o código de resposta é 200 e se a lista de produtos está correta.
-3. Teste de Criação de Produtos
-   - Verificar se um novo produto pode ser criado com dados válidos.
-   - Verificar se o código de resposta é 201 e se os dados do produto estão corretos.
-4. Teste de Recuperação de Todos os Produtos
-   - Verificar se a lista completa de produtos pode ser recuperada sem autenticação.
-   - Verificar se o código de resposta é 200 e se a lista de produtos está correta.
-5. Teste de Recuperação de Produto por ID
-   - Verificar se um produto específico pode ser recuperado por ID.
-   - Verificar se o código de resposta é 200 e se os dados do produto estão corretos.
+**PRODUTOS**:
+
+**POST**:
+- Verificar a criação de um produto com dados válidos.
+- Verificar a criação de um produto com valor inválido para o campo "rating".
+- Verificar a criação de um produto com campo "price" vazio.
+- Verificar a criação de um produto com valor negativo para "stock".
+- Verificar a criação de um produto com URL de imagem inválida para o campo "thumbnail".
+- Verificar a criação de um produto com valor zero para o campo "price".
+- Verificar a criação de um produto sem informar nenhum valor no corpo do JSON.
+
+**GET**:
+- Verificar retorno com uma lista de produtos com dados corretos.
+- Verificar a estrutura da lista de produtos.
+- Verificar produtos específicos consultando pelo ID.
+- Verificar o retorno informando um ID inexistente.
+- Verificar o retorno informando um token inválido.
+
+**USUÁRIOS**:
+
+**POST**:
+- Verificar a geração de token com credenciais válidas.
+- Verificar geração de token com credenciais inválidas.
+- Verificar a geração do token sem o envio do campo "password".
+- Verificar a expiração do token após certo tempo de configuração.
+- Verificar se o sistema permite gerar o token com usuário inexistente.
+- Verificar se o "refreshToken" permite gerar um novo token.
+
+**GET**:
+- Verificar o status code da API de usuários.
+- Verificar a Estrutura do Response
+- Verificar o Conteúdo do Response.
+- Verificar a Presença de Campos Obrigatórios.
+- Verificar o Tipo de Dados dos Campos
+- Verificar a Resposta para Requisições Inválidas.
 
 ## Critérios de Sucesso
 - Todas as requisições devem retornar códigos de status apropriados (200, 201, etc.).
@@ -94,6 +111,6 @@ O objetivo deste plano de testes é validar o funcionamento das operações da A
 
 --- 
 
-Data: 09/09/2024
+**Data**: 09/09/2024
 
-Responsável: Thiago Ferreira Barbosa
+**Responsável**: Thiago Ferreira Barbosa.
