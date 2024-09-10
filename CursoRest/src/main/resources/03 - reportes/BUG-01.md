@@ -16,7 +16,7 @@ O sistema retorna um erro 500.
 3. Observe a resposta.
 
 ## Captura de Tela
-![01.png](..%2FXX%20-%20files%2F01.png)
+![BUG-01.png](..%2FXX%20-%20pictures%2FBUG-01.png)
 
 ## Ambiente
 - API: `{base_url}/auth/products`

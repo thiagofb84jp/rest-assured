@@ -32,7 +32,7 @@ Atualmente, o sistema permite:
 3. Verificar que a requisição é aceita e o produto é criado com sucesso.
 
 ## Captura de Tela
-![03.png](..%2FXX%20-%20files%2F03.png)
+![BUG-03.png](..%2FXX%20-%20pictures%2FBUG-03.png)
 
 ## Ambiente
 - API: (`{base_url}/products/add`)
