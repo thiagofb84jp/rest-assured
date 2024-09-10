@@ -1,16 +1,11 @@
 # Casos de Testes - API de Produtos - Método GET
 
 ---
-### Caso de Teste 1: Consulta de Produtos - Verificação Geral
+### Cenário 1: Verificar retorno com uma lista de produtos com dados corretos.
 
-**Objetivo:** Verificar se o método GET /products/ retorna uma lista de produtos com os dados corretos.
+**Objetivo:** Verificar se a requisição GET /products/ retorna uma lista de produtos com os dados corretos.
 
 **Requisição:** `GET /products/`.
-
-**Requisitos:**
- - O método deve retornar um status code 200 (OK).
- - A resposta deve conter uma lista de produtos.
- - Cada produto deve ter os campos esperados com os tipos corretos.
 
 **Dados Esperados:**
 - Status code: 200
@@ -18,7 +13,7 @@
     - **Produto 1**
         - `id`: 1
         - `title`: "Essence Mascara Lash Princess"
-        - `description`: "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula."
+        - `description`: "The Essence Mascara Lash Princess is a popular mascara known for its volumizing..."
         - `category`: "beauty"
         - `price`: 9.99
         - `discountPercentage`: 7.17
@@ -84,13 +79,18 @@
             - "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
         - `thumbnail`: "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png"
 
-**Resultado Esperado:**
-- Status code deve ser 200.
+
+**Resultado esperado:**
+- O método deve retornar o status code 200 (OK).
+- A resposta deve conter uma lista de produtos.
+- Cada produto deve ter os campos esperados com os tipos corretos.
 - A resposta deve conter todos os produtos com os detalhes correspondentes aos dados fornecidos.
 
 ---
-## Cenário 2: Consulta de Produtos - Verificação de Estrutura dos Produtos
+## Cenário 2: Verificar a estrutura da lista de produtos.
 **Objetivo:** Verificar se cada produto na resposta possui todos os campos obrigatórios com os tipos corretos.
+
+**Requisição:** `GET /products/`.
 
 **Requisitos:**
 - Cada produto deve conter os campos: `id`, `title`, `description`, `category`, `price`, `discountPercentage`, `rating`, `stock`, `tags`, `brand`, `sku`, `weight`, `dimensions`, `warrantyInformation`, `shippingInformation`, `availabilityStatus`, `reviews`, `returnPolicy`, `minimumOrderQuantity`, `meta`, `images`, `thumbnail`.
@@ -133,10 +133,15 @@
     - `images`: Array de URLs
     - `thumbnail`: URL
 
+**Resultado esperado:**
+- Cada produto deve ter os campos esperados com os tipos corretos.
+
 ---
-## Cenário 3: Consulta de Produtos - Verificação de Dados de Produtos Específicos
+## Cenário 3: Verificar produtos específicos consultando pelo ID
 
 **Objetivo:** Verificar se os dados de produtos específicos correspondem às informações fornecidas.
+
+**Requisição:** `GET /products/{id}`.
 
 **Requisitos:**
 - O método deve retornar produtos com os dados corretos para IDs específicos.
@@ -211,46 +216,48 @@
         - "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
     - `thumbnail`: "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png"
 
----
-## Cenário 4: Consulta de Produtos - Verificação de Produtos em Estoque
 
-**Objetivo:** Verificar se apenas produtos com status "In Stock" são retornados como disponíveis.
-
-**Requisitos:**
-- Produtos com o status `availabilityStatus` como "In Stock" devem estar disponíveis.
-
-**Dados Esperados:**
-- Status code: 200
-- Produtos retornados devem incluir apenas aqueles com `availabilityStatus` como "In Stock".
-
-**Produto Esperado com Status "In Stock":**
-- **Produto 2**
-    - `availabilityStatus`: "In Stock"
+**Resultado esperado:**
+- O método deve retornar o status code 200 (OK).
+- A resposta deve conter apenas a lista com o item informado no ID.
+- Cada produto deve ter os campos esperados com os tipos corretos.
+- A resposta deve conter todos os produtos com os detalhes correspondentes aos dados fornecidos.
 
 ---
-## Cenário 5: Consulta de Produtos - Verificação de Produtos com Avaliação Alta
+## Cenário 4: Verificar o retorno informando um ID inexistente
 
-**Objetivo:** Verificar se produtos com uma `rating` maior que 4.5 são retornados na resposta.
+**Objetivo:** Verificar se ao informar um ID inexistente a API retorna a mensagem de produto com ID não encontrado.
 
-**Requisitos:**
-- Produtos com `rating` maior que 4.5 devem estar presentes na resposta.
+**Requisição:** `GET /products/{id}`.
 
 **Dados Esperados:**
-- Status code: 200
-- Produtos com `rating` maior que 4.5:
-    - **Produto 1**
-        - `rating`: 4.94
+- Status code: 404.
+- JSON apresentando o seguinte retorno:
+```json
+{
+"message": "Product with id '{id}' not found"
+}
+```
+**Resultado esperado:**
+- O método deve retornar o status code 404 (Not Found).
+- A resposta deve conter apenas a mensagem informada (produto com ID não encontrado).
 
 ---
-## Cenário 6: Consulta de Produtos - Verificação de Ordenação dos Produtos
+## Cenário 5: Verificar o retorno informando um token inválido
 
-**Objetivo:** Verificar se os produtos são retornados na ordem esperada (por exemplo, por `price`).
+**Objetivo:** Verificar se, após a geração de um token, ao alterar o valor do token, a API não permite a busca pelos produtos.
 
-**Requisitos:**
-- A resposta deve retornar produtos ordenados por `price` em ordem crescente.
+**Requisição:** `GET /products/`.
 
 **Dados Esperados:**
-- Status code: 200
-- Produtos ordenados por `price` em ordem crescente:
-    - **Produto 1** (Preço: 9.99)
-    - **Produto 2** (Preço: 19.99)
+- Status code: 403.
+- JSON apresentando o seguinte retorno:
+```json
+{
+  "message": "invalid signature"
+}
+```
+**Resultado esperado:**
+- O método deve retornar o status code 403 (Forbidden).
+- A resposta deve conter apenas a mensagem informada.
+---

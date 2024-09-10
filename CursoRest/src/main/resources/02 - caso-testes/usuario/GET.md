@@ -1,13 +1,13 @@
-# Casos de Teste para a API de Usuários - Método GET
+# Casos de Testes - API de Usuários - Método GET
 
 ---
-## 1: Verificar o status code
+## Cenário 1: Verificar o status code da API de usuários
 - **Objetivo:** Confirmar que a API retorna um código de status HTTP 200 para uma requisição bem-sucedida.
 - **Requisição:** `GET /users`
 - **Saída esperada (response):** Código de status HTTP 200.
 ---
 
-## 2: Verificar a Estrutura do Response
+## Cenário 2: Verificar a Estrutura do Response
 - **Objetivo:** Validar que o corpo da resposta está estruturado corretamente.
 - **Requisição:** `GET /users`
 - **Saída esperada (response):**
@@ -44,7 +44,7 @@
 
 ---
 
-## 3: Verificar o Conteúdo do Response
+## Cenário 3: Verificar o Conteúdo do Response
 - **Objetivo:** Garantir que o conteúdo dos dados do usuário é consistente com o Saída esperada (response).
 - **Requisição:** `GET /users`
 - **Saída esperada (response):**
@@ -52,13 +52,13 @@
     - Cada usuário deve ter valores válidos para todas as chaves especificadas (por exemplo, `"id"` deve ser um número, `"email"` deve seguir o formato de um endereço de e-mail, etc.).
 
 ---
-## 4: Verificar a Presença de Campos Obrigatórios
+## Cenário 4: Verificar a Presença de Campos Obrigatórios
 - **Objetivo:** Verificar se todos os campos obrigatórios estão presentes na resposta.
 - **Requisição:** `GET /users`
 - **Saída esperada (response):** Cada usuário na lista deve ter todos os campos obrigatórios presentes e não nulos.
 
 ---
-## 5: Verificar o Tipo de Dados dos Campos
+## Cenário 5: Verificar o Tipo de Dados dos Campos
 - **Objetivo:** Garantir que os tipos de dados dos campos estão corretos.
 - **Requisição:** `GET /users`
 - **Saída esperada (response):**
@@ -91,9 +91,8 @@
     - `"userAgent"`: string
 
 ---
-## 6: Verificar a Resposta para Requisições Inválidas
+## Cenário 6: Verificar a Resposta para Requisições Inválidas
 - **Objetivo:** Garantir que a API lida corretamente com requisições inválidas ou malformadas.
 - **Requisição:** (faça uma requisição inválida, como um método HTTP incorreto ou URL errada)
 - **Saída esperada (response):** A API deve retornar um código de status de erro apropriado (por exemplo, 404 ou 400).
-
 ---
